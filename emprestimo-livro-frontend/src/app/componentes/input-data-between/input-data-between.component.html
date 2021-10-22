@@ -1,0 +1,16 @@
+<div fxLayoutAlign="start  stretch" fxLayoutGap="5px">
+    <mat-form-field appearance="standard" fxFlex="calc(45% - 5px)">
+        <mat-label>{{label}}</mat-label>
+        <input matInput type="date" #input [formControl]="controlGte">
+    </mat-form-field>
+    <div style="display: table;">
+        <div style="display: table-cell; vertical-align: middle;">
+            <div>
+                à
+            </div>
+        </div>
+    </div>
+    <mat-form-field appearance="standard" fxFlex="calc(45% - 5px)">
+        <input matInput type="date" #input [formControl]="controlLte">
+    </mat-form-field>
+</div>

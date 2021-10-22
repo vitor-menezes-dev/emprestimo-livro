@@ -1,0 +1,29 @@
+<mat-toolbar>
+
+    <h1 class="mat-h1">
+        <mat-icon *ngIf="!pessoa?.desativado">account_circle</mat-icon>
+        <mat-icon *ngIf="pessoa?.desativado">no_accounts</mat-icon>
+        {{pessoa?.nome}} &nbsp;
+        <div *ngIf="pessoa?.nascimento"> ({{idade | number : '1.0-0'}} Anos)</div>
+    </h1>
+    <button mat-mini-fab color="primary" *ngIf="editable" (click)="openDialog()">
+        <mat-icon>drive_file_rename_outline</mat-icon>
+    </button>
+</mat-toolbar>
+<div class="content" fxLayout="row warp" fxLayoutAlign="center center" fxLayoutGap="5px">
+
+    <mat-card fxFlex.sm="100%" fxFlex="calc(50% - 5px)">
+        <mat-card-header>
+            <mat-card-title>
+                Empréstimos
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <dt-emprestimos [pessoaId]="pessoa?.id"
+                [displayedColumns]="['id','exemplar.livro.titulo', 'retirada', 'devolvido','action']"
+                [hiddenFilter]="['pessoas']"></dt-emprestimos>
+        </mat-card-content>
+    </mat-card>
+
+
+</div>

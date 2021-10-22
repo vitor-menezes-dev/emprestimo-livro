@@ -1,0 +1,12 @@
+<mat-nav-list class='menu-principal' *ngIf="isUserLoggedIn">
+    <div *ngFor="let link of links">
+        <app-link mat-list-item [link]="link" ></app-link>
+    </div>
+</mat-nav-list>
+<footer>
+    <mat-nav-list>
+        <app-link mat-list-item [link]="perfilLink" *ngIf="isUserLoggedIn"></app-link>
+        <app-link mat-list-item [link]="logoutLink" (click)=logout() *ngIf="isUserLoggedIn"></app-link>
+        <app-link mat-list-item [link]="loginLink" (click)=logout()  *ngIf="!isUserLoggedIn"></app-link>
+    </mat-nav-list>
+</footer>

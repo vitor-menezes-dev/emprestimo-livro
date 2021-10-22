@@ -1,0 +1,55 @@
+
+<form [formGroup]="dialogForm" autocomplete="off" novalidate (ngSubmit)="save()">
+
+    <h1 mat-dialog-title>{{data.nome}}</h1>
+    <div mat-dialog-content fxLayout="row wrap" fxLayoutAlign="center center">
+        <mat-form-field appearance="fill" fxFlex="100%">
+            <mat-label>Nome Completo</mat-label>
+            <input matInput formControlName="nome">
+            <mat-error *ngIf="hasError('nome', 'required')">
+                Nome é <strong>obrigatório</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="100%">
+            <mat-label>Login</mat-label>
+            <input matInput formControlName="login">
+            <mat-error *ngIf="hasError('login', 'required')">
+                Login é <strong>obrigatório</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="100%" >
+            <mat-label>{{dialogForm.value.id?"Atuallizar Senha":"Senha"}}</mat-label>
+            <input matInput [type]="hideSenha ? 'password' : 'text'" formControlName="senha" [required]="!dialogForm.value.id">
+            <button type="button" mat-icon-button matSuffix (click)="hideSenha = !hideSenha" tabindex="-1">
+                <mat-icon>{{hideSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <button type="button" mat-icon-button matSuffix (click)="hideSenha = false" (click)="gerarNovaSenha()" tabindex="-1">
+                <mat-icon matTooltip="Gerar Nova senha">shuffle_on</mat-icon>
+            </button>
+            <mat-error *ngIf="hasError('senha', 'required')">
+                Senha é <strong>obrigatória</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="100%">
+            <mat-label>Perfis</mat-label>
+            <mat-select formControlName="perfis" multiple>
+                <mat-option value="ROLE_ADMIN">Administrador</mat-option>
+                <mat-option value="ROLE_REQUISITANTE">Requisitante</mat-option>
+            </mat-select>
+            <mat-error *ngIf="hasError('perfis', 'required')">
+                Pelo menos 1 perfil é <strong>obrigatório</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" fxFlex="100%">
+            <mat-label>Data nascimento</mat-label>
+            <input matInput type="date" formControlName="nascimento">
+        </mat-form-field>
+        <mat-checkbox formControlName="desativado" *ngIf="dialogForm.value.id" [hidden]="hiddenDesativado" >desativado</mat-checkbox>
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" mat-button (click)="onNoClick()">Descartar</button>
+        <button  mat-button >Salvar</button>
+    </div>
+</form>
+<app-progress-spinner  [displayProgressSpinner]="isClosing">
+</app-progress-spinner>

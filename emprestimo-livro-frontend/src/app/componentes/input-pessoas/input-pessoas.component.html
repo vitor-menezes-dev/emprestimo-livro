@@ -1,0 +1,15 @@
+<mat-form-field appearance="standard">
+    <mat-label>{{label}}</mat-label>
+
+    <input matInput [matChipInputFor]="pessoasChip" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="false" [formControl]="autoCompleteCtrl" #pessoaInput>
+
+    <mat-error *ngIf="hasError('required')">
+        Pessoa(s) é <strong>obrigatório</strong>
+    </mat-error>
+</mat-form-field>
+<mat-chip-list #pessoasChip>
+    <mat-chip *ngFor="let pessoa of control.value" [value]="pessoa" [removable]="true" (click)="clickChip(pessoa)">
+        {{pessoa.nome}}
+    </mat-chip>
+</mat-chip-list>

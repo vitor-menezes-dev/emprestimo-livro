@@ -1,0 +1,40 @@
+@use 'sass:map';
+@use '~@angular/material' as mat;
+
+table {
+  width: 100%;
+}
+
+.mat-paginator mat-spinner{
+  margin-left : 10px;
+  margin-top: 1px;
+  float: left;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.mat-ripple{
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+  color: $theme-primary;
+}
+
+tr.detalhes-row {
+  height: 0 !important;
+}
+
+.detalhes {
+  overflow: hidden;
+  display: flex;
+}
+
+.mat-mini-fab{
+  margin : 10px;
+  float: left;
+}

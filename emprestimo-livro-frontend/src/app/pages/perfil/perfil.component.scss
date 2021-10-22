@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+@import '../../../theme.scss';
+
+mat-toolbar .mat-h1{
+    margin-right: 5px;
+}
+
+.mat-toolbar{
+    background-color: mat-color($theme-secondary,100);
+}

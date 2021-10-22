@@ -1,0 +1,22 @@
+<mat-sidenav-container class="sidenav-container all-wrap" autosize>
+  <mat-sidenav #drawer class="sidenav" mode=side [opened]='opened'>
+    <mat-toolbar color="primary">
+      <button type="button" mat-icon-button (click)="drawer.toggle();opened=!opened">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img class="clickable" src="../assets/img/logo-horizontal.png" routerLink="/home" height="58px"/>
+    </mat-toolbar>
+   <app-menu></app-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary"  *ngIf="!opened">
+      <button *ngIf="!opened" type="button" mat-icon-button (click)="drawer.toggle();opened=!opened">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img class="clickable" src="../assets/img/logo-horizontal.png" routerLink="/home" height="58px"/>
+    </mat-toolbar>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

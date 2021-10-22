@@ -1,0 +1,100 @@
+@import '~@angular/material/theming';
+@import './theme.scss';
+
+.accent-color {
+  color: mat-color($theme-accent) !important;
+}
+
+.primary-color {
+  color: mat-color($theme-primary) !important;
+}
+
+.warn-color {
+  color: mat-color($theme-warn) !important;
+}
+
+.success-color {
+  color: mat-color($theme-success) !important;
+}
+
+
+
+/* You can add global styles to this file, and also import other style files */
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+.dashboard-card {
+  margin:5px;
+}
+
+.dashboard-card-content {
+  overflow-wrap: break-word;
+}
+
+.clickable{
+  cursor: pointer;
+}
+
+.centralize{
+  text-align:center;
+  display:inline-block;
+}
+
+.mat-h1{
+    display: flex;
+    align-items:center;
+    color: mat-color($theme-primary);
+}
+
+.mat-h1 mat-icon {
+  margin: 2px;
+  width: 36px;
+  height: 36px;
+  font-size: 36px;
+}
+
+h4{
+  font: 500 15px / 24px Roboto, "Helvetica Neue", sans-serif !important; 
+
+}
+
+
+tr.mat-row, tr.mat-footer-row {
+  height: 36px !important;
+}
+
+tr.mat-header-row {
+  height: 40px !important;
+}
+
+
+.mat-tab-label {
+  min-width: 100px !important;
+}
+
+.mat-paginator {
+  border-top: rgb(97 97 97 / 20%) thin solid;
+  border-bottom: rgb(97 97 97 / 20%) thin solid;
+  min-height: 56px;
+}
+
+.mat-expansion-panel-header.mat-expanded {
+  height: 24px !important;
+}
+
+.mat-snackBar{
+  white-space: pre-wrap
+}
+
+.mat-simple-snackbar-action{
+  color: mat-color($theme-secondary,200);
+}
+
+.mat-icon-button{
+  height: auto !important;
+}
+
+[hidden] {
+  display: none !important;
+}

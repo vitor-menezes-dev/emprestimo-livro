@@ -1,0 +1,3 @@
+<a button type="button" mat-button [bcRouterLink]="link.url" bcRouterLinkActive="active" [navigationDelay]="100" [disabled]="disabled" [hidden]="hidden">
+    <mat-icon [color]="disabled? 'accent-100' : 'primary'">{{link.icon}}</mat-icon>{{link.title}}
+</a>

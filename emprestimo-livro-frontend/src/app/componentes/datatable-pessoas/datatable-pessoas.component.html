@@ -1,0 +1,84 @@
+<div>
+    <mat-expansion-panel [hidden]="hiddenFilter.includes('filtros')">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Filtros:
+            </mat-panel-title>
+            <mat-panel-description>
+
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div fxLayout="row wrap" fxLayoutAlign="left stretch" fxLayoutGap="5px">
+            <mat-form-field appearance="standard" fxFlex="calc(50%-5px)" [hidden]="hiddenFilter.includes('nome')">
+                <mat-label>Nome</mat-label>
+                <input matInput [formControl]="nomeCtrl">
+            </mat-form-field>
+            <mat-form-field appearance="standard" fxFlex="calc(50%-5px)" [hidden]="hiddenFilter.includes('nascimento')">
+                <mat-label>Nascimento</mat-label>
+                <input matInput type="date" #input [formControl]="nascimentoCtrl">
+            </mat-form-field>
+            <mat-button-toggle-group [formControl]="desativadoCtrl">
+                <mat-button-toggle value="-1" checked>Todos</mat-button-toggle>
+                <mat-button-toggle value="0">Ativos</mat-button-toggle>
+                <mat-button-toggle value="1">Desativados</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+    </mat-expansion-panel>
+    <div>
+        <table mat-table [dataSource]="data" matSort>
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>#
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nome">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nascimento">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Data de Nascimento
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.nascimento | date: 'dd/MM/yyyy' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="desativado">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon *ngIf="element.desativado" color="accent">person_off</mat-icon>
+                    <mat-icon *ngIf="!element.desativado"color="primary">person</mat-icon>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon *ngIf="!element.devolvido" matTooltip="Devolver" matRipple>login</mat-icon>
+                    <mat-icon *ngIf="element.devolvido" matTooltip="Retirar Novamente" matRipple>content_copy</mat-icon>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" matRipple (click)="navigateTo(row)"></tr>
+
+        </table>
+        <table>
+            <tr *ngIf="!data.length">
+                <td style="text-align: center;" [attr.colspan]="displayedColumns.length">
+                    Sem Registros!
+                </td>
+            </tr>
+        </table>
+        <div class=mat-paginator>
+            <mat-spinner diameter='54' *ngIf=isLoadingResults></mat-spinner>
+            <button mat-mini-fab (click)="download()" *ngIf="!isLoadingResults&&resultsLength!=0"
+                [disabled]="isDownloadingResults">
+                <mat-icon>download</mat-icon>
+            </button>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" [length]="resultsLength" [pageSize]="pageSize"
+                showFirstLastButtons [hidden]="pageSize>resultsLength">
+            </mat-paginator>
+        </div>
+    </div>
+
+</div>
